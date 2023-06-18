@@ -1,9 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from typing import List
+
+from pydantic import UUID4
 from models import User, Gender, Role, Hotel, Room
 from uuid import UUID
+from database import Database
 
 app = FastAPI()
+db = Database()
 
 
 db: List[User] = [
@@ -224,7 +228,7 @@ async def get_room(hotel_id: UUID, room_id: UUID):
 async def add_room_to_hotel(hotel_id: UUID, room: Room):
     for hotel in db_hotels:
         if hotel.hotel_id == hotel_id:
-            room.room_id = uuid4()
+            room.room_id = UUID4()
             room.hotel_id = hotel_id
             hotel.rooms.append(room)
             return {"New room id": room.room_id}

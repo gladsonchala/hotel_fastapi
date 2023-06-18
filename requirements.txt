@@ -11,3 +11,4 @@ sniffio==1.2.0
 starlette==0.17.1
 typing-extensions==4.1.1
 uvicorn==0.17.6
+sqlite3
